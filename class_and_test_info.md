@@ -32,6 +32,7 @@ Assume that the RecipeController initially contains a valid recipe with an ID of
 
 ### For Deleting Recipes
 Assume that the RecipeController contains a valid recipe with an ID of 1.
+
 <img width="426" alt="image" src="https://github.com/user-attachments/assets/1fec9fea-6d88-460c-9323-c11f3f219d80">
 
 ## Code/Implementation of the concrete test cases
