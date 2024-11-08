@@ -1,6 +1,6 @@
 # RecipeVault
 
-Wireframe
+## Wireframe
 
 <img width="194" alt="Screenshot 2024-11-08 at 3 14 03 PM" src="https://github.com/user-attachments/assets/1635dd1c-ecde-4109-887f-4a501c569231">
 
