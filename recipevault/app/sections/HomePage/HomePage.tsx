@@ -45,7 +45,7 @@ const HomePage = () => {
                   <img 
                     src="/static/images/JumbotronImage.jpg" 
                     alt="Recipe Vault"
-                    className="w-full h-[500px] object-cover rounded-lg opacity-70"
+                    className="w-full h-[500px] object-cover opacity-85"
                   />
                 </div>
               </div>
@@ -62,7 +62,7 @@ const HomePage = () => {
                 <img 
                   src="/static/images/brooke-lark-C1fMH2Vej8A-unsplash 1.png" 
                   alt="About Recipe Vault"
-                  className="w-full h-auto rounded-lg object-cover"
+                  className="w-full h-auto object-cover"
                 />
               </div>
               <div className="w-1/2 text-left">
