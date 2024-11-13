@@ -14,4 +14,4 @@ const RecipesPage = () => {
   );
 };
 
-export default RecipesPage;
+export default RecipesPage; 
