@@ -32,7 +32,7 @@ const HomePage = () => {
             <div className="bg-gray-100 rounded-lg p-8 mb-8">
               <div className="flex items-center justify-between gap-8">
                 <div className="w-1/2">
-                  <h1 className="text-7xl font-bold tracking-tight mb-4 text-gray-950">
+                  <h1 className="text-7xl font-bold tracking-tight mb-4 text-[#031749]">
                     RECIPE
                     <br />
                     VAULT
@@ -41,11 +41,11 @@ const HomePage = () => {
                     Explore a wide variety of recipes
                   </p>
                 </div>
-                <div className="w-1/2">
+                <div className="w-full">
                   <img 
-                    src="/static/images/Group 4913.png" 
+                    src="/static/images/JumbotronImage.jpg" 
                     alt="Recipe Vault"
-                    className="w-full h-auto object-cover rounded-lg"
+                    className="w-full h-[500px] object-cover rounded-lg opacity-70"
                   />
                 </div>
               </div>
@@ -55,7 +55,7 @@ const HomePage = () => {
 
           <section className="mt-20 text-center">
             <h5 className="text-gray-600 text-sm uppercase tracking-wider mb-2">About Recipe Vault</h5>
-            <h1 className="text-4xl font-bold mb-16">Why Choose Recipe Vault?</h1>
+            <h1 className="text-4xl font-bold mb-16 text-[#031749]">Why Choose Recipe Vault?</h1>
             
             <div className="flex items-center justify-between gap-12 mb-20">
               <div className="w-full">
@@ -66,7 +66,7 @@ const HomePage = () => {
                 />
               </div>
               <div className="w-1/2 text-left">
-                <h2 className="text-3xl font-bold mb-4">Your Perfect Recipe Companion</h2>
+                <h2 className="text-3xl font-bold mb-4 text-[#031749]">Your Perfect Recipe Companion</h2>
                 <p className="text-gray-600 text-lg">
                   Recipe Vault helps you discover, save, and organize your favorite recipes. 
                   Whether you're a seasoned chef or just starting out, we've got everything 
