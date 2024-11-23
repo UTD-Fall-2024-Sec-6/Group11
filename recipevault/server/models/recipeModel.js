@@ -1,0 +1,27 @@
+import mongoose from "mongoose";
+
+const recipeSchema = mongoose.Schema(
+    {
+        id: {
+            type: Int32Array,
+            required: true,
+        },
+        recipe_name: {
+            type: String,
+            required: true,
+        },
+        ingredients: {
+            type: [String],
+            required: true,
+        },
+        instructions: {
+            type: String,
+            required: true,
+        }
+    },
+    {
+        timestamps: true,
+    }
+);
+
+export const Recipe = mongoose.model('Recipe', recipeSchema);

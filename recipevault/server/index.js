@@ -1,6 +1,23 @@
-const express = require('express')
-const mongoose = require('mongoose')
+import { PORT, MONGO_URL } from './config.js';
+import express from 'express';
+import mongoose from 'mongoose';
+const app = express();
 
-const app = express()
+app.get('/', (request, response) => {
+    console.log(request);
+    return response.status(234).send('Welcome to RecipeVault');
+});
 
-mongoose.connect('')
+
+
+mongoose
+    .connect(MONGO_URL)
+    .then(() => {
+        console.log('App connected to database');
+        app.listen(PORT, () => {
+            console.log(`App is listening to port: ${PORT}`)
+        });
+    })
+    .catch((error) => {
+        console.log(error);
+    });
