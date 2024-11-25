@@ -9,8 +9,6 @@ export default function Home() {
     // this is where all our components will go
     <div className="App">
       <HomePage/>
-      <LoginPage/>
-      <SignupPage/>
     </div>
   );
 }
