@@ -1,4 +1,4 @@
 export const MONGO_URL='mongodb+srv://aryamantomer:Aryaman22@recipevault.mqoon.mongodb.net/?retryWrites=true&w=majority&appName=RecipeVault';
 export const PORT=5555;
-export const JWT_USER_SECRET="";
-export const JWT_AUTH_SECRET="";
+export const JWT_USER_SECRET='fc3a419b75a5278151ca9e851d337210ab92c98f05dbabd859222998563d92d2ff6240b1ebd92f4bad7ca567172232aa5f6df159d011ddba38c13d6b342b737f'
+export const JWT_AUTH_SECRET='66b3460b28f0648d9be098cdc8d78dcfd3935ce31ddd9d29a7f85a4d1adfb2dee7f0d46c5d3090a90b6ba6a726b0814ba5bc04516dd979f2a98a5f95f728a5cf'

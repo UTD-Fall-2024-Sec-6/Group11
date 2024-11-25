@@ -6,6 +6,16 @@ import { authenticateToken, authorizeAdmin } from "../middleware/authMiddleware.
 import { JWT_AUTH_SECRET, JWT_USER_SECRET } from "../config.js";
 const userRouter = express.Router();
 
+
+userRouter.get('/', authenticateToken, authorizeAdmin, async (req, res) => {
+    try {
+        const users = await User.find().select('-Password');
+        res.status(200).json(users);
+    } catch (error) {
+        res.status(500).json({ message: 'Error fetching users', error });
+    }
+});
+
 userRouter.post('/signup', async (req, res) => {
     const { userName, Password, Email, role } = req.body;
     try {
