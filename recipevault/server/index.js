@@ -14,6 +14,10 @@ app.use('/api/users', userRouter);
 app.use('/api/recipes', recipeRouter);
 app.use('/api/admin', adminRouter)
 
+app.get("/", (req, res) => {
+    res.send("Welcome to the RecipeVault Application");
+});
+
 mongoose
     .connect(MONGO_URL)
     .then(() => {
