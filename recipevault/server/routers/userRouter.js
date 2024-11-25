@@ -19,9 +19,10 @@ userRouter.post('/signup', async (req, res) => {
             userName,
             Password: hashedPassword,
             Email,
+            role: role || "user",
         });
 
-        res.status(201).json({ message: 'User created successfully', user: newUser });
+        res.status(201).json({ message: 'User created successfully', user: { id: newUser._id, Email: newUser.Email, role: newUser.role } });
     } catch (error) {
         res.status(500).json({ message: 'Error signing up user', error });
     }
@@ -41,7 +42,7 @@ userRouter.post('/login', async (req, res) => {
             return res.status(401).json({ message: 'Invalid credentials.' });
         }
 
-        const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: '1h' });
+        const token = jwt.sign({ id: user._id, Email: user.Email, role: user.role }, JWT_SECRET, { expiresIn: '1h' });
         res.status(200).json({ message: 'Login successful', token });
     } catch (error) {
         res.status(500).json({ message: 'Error logging in', error });
