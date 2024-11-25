@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import userRouter from './routers/userRouter.js';
 import recipeRouter from './routers/recipeRouter.js';
+import adminRouter from './routers/adminRouter.js';
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -11,6 +12,7 @@ app.use(cors());
 // Routers
 app.use('/api/users', userRouter);
 app.use('/api/recipes', recipeRouter);
+app.use('/api/admin', adminRouter)
 
 mongoose
     .connect(MONGO_URL)
