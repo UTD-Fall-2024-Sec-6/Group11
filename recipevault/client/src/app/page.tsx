@@ -1,9 +1,14 @@
-import React from 'react'
+import NavBar from "./components/NavBar";
+import HomePage from "./sections/HomePage/HomePage";
+import LoginPage from "./sections/login/page";
+import SignupPage from "./sections/signup/page";
 
-function page() {
+
+export default function Home() {
   return (
-    <div>page</div>
-  )
+    // this is where all our components will go
+    <div className="App">
+      <HomePage/>
+    </div>
+  );
 }
-
-export default page
