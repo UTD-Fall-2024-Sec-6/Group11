@@ -45,7 +45,7 @@ userRouter.post('/login', async (req, res) => {
         if (!isPasswordValid) {
             return res.status(401).json({ message: 'Invalid credentials.' });
         }
-        const secret = user.role === "admin" ? JWT_ADMIN_SECRET : JWT_USER_SECRET;
+        const secret = user.role === "admin" ? JWT_AUTH_SECRET : JWT_USER_SECRET;
         const token = jwt.sign(
             { id: user._id, Email: user.Email, role: user.role },
             secret,
