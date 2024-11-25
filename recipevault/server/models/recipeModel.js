@@ -3,9 +3,9 @@ import mongoose from "mongoose";
 const recipeSchema = mongoose.Schema(
     {
         id: {
-            type: Int32Array,
+            type: Number,
             required: true,
-        },
+        },        
         recipe_name: {
             type: String,
             required: true,

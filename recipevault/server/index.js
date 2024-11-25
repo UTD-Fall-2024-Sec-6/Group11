@@ -1,14 +1,16 @@
 import { PORT, MONGO_URL } from './config.js';
 import express from 'express';
 import mongoose from 'mongoose';
+import cors from 'cors';
+import userRouter from './routers/userRouter.js';
+import recipeRouter from './routers/recipeRouter.js';
 const app = express();
+app.use(express.json());
+app.use(cors());
 
-app.get('/', (request, response) => {
-    console.log(request);
-    return response.status(234).send('Welcome to RecipeVault');
-});
-
-
+// Routers
+app.use('/api/users', userRouter);
+app.use('/api/recipes', recipeRouter);
 
 mongoose
     .connect(MONGO_URL)
