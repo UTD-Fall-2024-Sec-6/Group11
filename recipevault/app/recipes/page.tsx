@@ -10,16 +10,6 @@ const recipes = Array(12).fill({
 export default function Page () {
     return (
         <div className="min-h-screen bg-white">
-      <header className="flex justify-between items-center p-4 border-b">
-        <nav className="flex space-x-4">
-          <Link href="/" className="text-black hover:text-gray-700">Home</Link>
-          <Link href="/my-recipes" className="text-black hover:text-gray-700">My Recipes</Link>
-        </nav>
-        <div className="flex space-x-4">
-          <Link href="/login" className="text-black hover:text-gray-700">Login</Link>
-          <Link href="/signup" className="text-black hover:text-gray-700">Sign Up</Link>
-        </div>
-      </header>
 
       <main className="container mx-auto px-4 py-8">
         <div className="mb-8">

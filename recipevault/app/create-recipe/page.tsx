@@ -67,48 +67,6 @@ export default function Page () {
           </form>
         </div>
       </main>
-
-      {/* Footer */}
-      <footer className="border-t py-8">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="text-xl font-bold">Logo</div>
-            
-            <nav className="flex gap-6">
-              <Link href="/recipes" className="hover:text-gray-600">
-                Recipes
-              </Link>
-              <Link href="/my-recipes" className="hover:text-gray-600">
-                My Recipes
-              </Link>
-              <Link href="/login" className="hover:text-gray-600">
-                Login
-              </Link>
-              <Link href="/signup" className="hover:text-gray-600">
-                Sign Up
-              </Link>
-              <Link href="/create-recipe" className="hover:text-gray-600">
-                Create Recipe
-              </Link>
-            </nav>
-          </div>
-
-          <div className="mt-8 text-center text-sm text-gray-500">
-            <p>© 2023 Created with love by RecipeApp. All rights reserved.</p>
-            <div className="flex justify-center gap-4 mt-2">
-              <Link href="/privacy" className="hover:text-gray-600">
-                Privacy Policy
-              </Link>
-              <Link href="/terms" className="hover:text-gray-600">
-                Terms of Service
-              </Link>
-              <Link href="/cookies" className="hover:text-gray-600">
-                Cookies Settings
-              </Link>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
     )
 }
