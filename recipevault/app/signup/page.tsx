@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 
 const SignupPage = () => {
+
   return (
     <div className="min-h-screen bg-white flex items-center justify-center relative overflow-hidden">
       <div className="max-w-2xl w-full px-6 py-8 bg-gray-50 rounded-lg">
