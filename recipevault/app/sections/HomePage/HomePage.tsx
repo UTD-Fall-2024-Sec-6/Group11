@@ -26,33 +26,30 @@ const HomePage = () => {
         </div>
       </nav>
 
-      <main className="container mx-auto px-4 mt-5">
-        <div className="max-w-6xl mx-auto">
+      <main>
+        <div>
           <div className="relative">
-            <div className="bg-gray-100 rounded-lg p-8 mb-8">
-              <div className="flex items-center justify-between gap-8">
-                <div className="w-1/2">
-                  <h1 className="text-7xl font-bold tracking-tight mb-4 text-[#031749]">
-                    RECIPE
-                    <br />
-                    VAULT
-                  </h1>
-                  <p className="text-gray-900 text-lg mb-8">
-                    Explore a wide variety of recipes
-                  </p>
-                </div>
-                <div className="w-full">
-                  <img 
-                    src="/static/images/JumbotronImage.jpg" 
-                    alt="Recipe Vault"
-                    className="w-full h-[500px] object-cover opacity-85"
-                  />
-                </div>
-              </div>
-              <div className="absolute bottom-4 right-4 w-8 h-8 bg-black"></div>
+            <img 
+              src="/static/images/homepageImage.jpg"
+              alt="Recipe Vault"
+              className="w-full h-[500px] object-cover opacity-85"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent"></div>
+            <div className="absolute top-1/2 left-8 transform -translate-y-1/2">
+              <h1 className="text-7xl font-bold tracking-tight mb-4 text-white">
+                RECIPE
+                <br />
+                VAULT
+              </h1>
+              <p className="text-white text-lg mb-8">
+                Explore a wide variety of recipes
+              </p>
             </div>
           </div>
+          <div className="absolute bottom-4 right-4 w-8 h-8 bg-black"></div>
+        </div>
 
+        <div className="container mx-auto">
           <section className="mt-20 text-center">
             <h5 className="text-gray-600 text-sm uppercase tracking-wider mb-2">About Recipe Vault</h5>
             <h1 className="text-4xl font-bold mb-16 text-[#031749]">Why Choose Recipe Vault?</h1>
@@ -125,8 +122,6 @@ const HomePage = () => {
               Browse Recipes
             </Link>
           </div>
-
-          
         </div>
       </main>
 
