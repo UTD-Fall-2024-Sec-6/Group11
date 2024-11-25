@@ -66,6 +66,7 @@ userRouter.get('/all', authenticateToken, authorizeAdmin, async (req, res) => {
     }
 });
 
+
 userRouter.get('/:id', authenticateToken, authorizeAdmin, async (req, res) => {
     const { id } = req.params;
     try {

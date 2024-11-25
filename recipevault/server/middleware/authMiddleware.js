@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-
+import { JWT_AUTH_SECRET, JWT_USER_SECRET } from "../config.js";
 export const authenticateToken = (req, res, next) => {
     const authHeader = req.headers["authorization"];
     const token = authHeader && authHeader.split(" ")[1];
@@ -17,9 +17,9 @@ export const authenticateToken = (req, res, next) => {
         }
     });
 
-    jwt.verify(token, JWT_ADMIN_SECRET, (err, decodedAdmin) => {
+    jwt.verify(token, JWT_AUTH_SECRET, (err, decodedAdmin) => {
         if (!err) {
-            secret = JWT_ADMIN_SECRET;
+            secret = JWT_AUTH_SECRET;
             req.user = decodedAdmin;
         }
     });
