@@ -6,7 +6,7 @@ import { isAuthenticated, isAdmin } from "../middleware/authMiddleware.js";
 const userRouter = express.Router();
 
 
-userRouter.get("/", isAuthenticated, isAdmin, async (req, res) => {
+userRouter.get("/", async (req, res) => {
     try {
         const users = await User.find().select("-Password");
         res.status(200).json(users);
