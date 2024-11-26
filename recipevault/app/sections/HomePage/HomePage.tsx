@@ -45,7 +45,7 @@ const HomePage = () => {
                 <h2 className="text-3xl font-bold mb-4 text-[#031749]">Your Perfect Recipe Companion</h2>
                 <p className="text-gray-600 text-lg">
                   Recipe Vault helps you discover, save, and organize your favorite recipes. 
-                  Whether you're a seasoned chef or just starting out, we've got everything 
+                  Whether you&apos;re a seasoned chef or just starting out, we&apos;ve got everything 
                   you need to make your cooking journey enjoyable.
                 </p>
               </div>
