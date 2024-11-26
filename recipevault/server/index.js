@@ -2,17 +2,18 @@ import { PORT, MONGO_URL } from './config.js';
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
+import sessionMiddleware from "./middleware/sessionMiddleware.js";
 import userRouter from './routers/userRouter.js';
 import recipeRouter from './routers/recipeRouter.js';
-import adminRouter from './routers/adminRouter.js';
+
 const app = express();
 app.use(express.json());
+app.use(sessionMiddleware);
 app.use(cors());
 
 // Routers
 app.use('/api/users', userRouter);
 app.use('/api/recipes', recipeRouter);
-app.use('/api/admin', adminRouter)
 
 app.get("/", (req, res) => {
     res.send("Welcome to the RecipeVault Application");

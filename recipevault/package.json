@@ -9,6 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "bcrypt": "^5.1.1",
+    "connect-mongo": "^5.1.0",
+    "express-session": "^1.18.1",
+    "mongoose": "^8.8.3",
     "next": "15.0.3",
     "npm": "^10.9.0",
     "react": "19.0.0-rc-66855b96-20241106",
