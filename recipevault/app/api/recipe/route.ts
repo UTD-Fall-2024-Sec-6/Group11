@@ -21,7 +21,7 @@ export async function GET (res: NextResponse, req: NextRequest) {
         // Extract `id` from query parameters
         const { searchParams } = new URL(req.url);
         const id = searchParams.get("id");
-
+        
         if (!id) {
             return NextResponse.json(
                 { success: false, error: "Recipe ID is required" },
