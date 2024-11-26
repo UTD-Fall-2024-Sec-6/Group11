@@ -55,7 +55,8 @@ userRouter.post("/login", async (req, res) => {
             return res.status(401).json({ message: "Invalid credentials." });
         }
 
-
+        console.log("Logging in user with role:", user.role);
+        
         req.session.userId = user._id;
         req.session.role = user.role;
 
