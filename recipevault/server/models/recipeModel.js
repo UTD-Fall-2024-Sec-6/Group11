@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+
 const recipeSchema = mongoose.Schema(
     {
         id: {
@@ -23,5 +24,6 @@ const recipeSchema = mongoose.Schema(
         timestamps: true,
     }
 );
+
 
 export const Recipe = mongoose.model('Recipe', recipeSchema);
