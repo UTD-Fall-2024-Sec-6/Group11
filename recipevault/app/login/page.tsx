@@ -1,20 +1,29 @@
+"use client";
+
 import React from 'react';
 import Link from 'next/link';
+import { useState } from 'react';
 
 const LoginPage = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  async function handleSignIn () {
+
+  }
+
   return (
     <div className="min-h-screen bg-white flex items-center justify-center">
       <div className="max-w-2xl w-full px-6 py-8 bg-gray-50 rounded-lg">
         <h1 className="text-3xl font-bold text-center text-[#031749]">Welcome Back</h1>
         <h2 className="text-sm font-bold text-center mb-8">Discover and Share Amazing Recipes</h2>
-        <form className="space-y-6">
+        <form onSubmit={handleSignIn} className="space-y-6">
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-              Email
-            </label>
+            <label htmlFor="username" className="block text-sm font-medium text-gray-700">Username</label>
             <input
-              type="email"
-              id="email"
+              id="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               className="mt-1 block w-full rounded border-gray-300 shadow-sm focus:border-black focus:ring-black"
             />
           </div>
@@ -25,6 +34,8 @@ const LoginPage = () => {
             <input
               type="password"
               id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className="mt-1 block w-full rounded border-gray-300 shadow-sm focus:border-black focus:ring-black"
             />
           </div>
@@ -46,4 +57,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage; 
+export default LoginPage;
