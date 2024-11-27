@@ -6,9 +6,9 @@ const recipeRouter = express.Router();
 
 // Create a Recipe
 recipeRouter.post('/', async (req, res) => {
-    const { id, recipe_name, ingredients, instructions } = req.body;
+    const { id, recipe_name, ingredients, instructions, image } = req.body;
     try {
-        const newRecipe = await Recipe.create({ id, recipe_name, ingredients, instructions });
+        const newRecipe = await Recipe.create({ id, recipe_name, ingredients, instructions, image });
         res.status(201).json({ message: 'Recipe created successfully', recipe: newRecipe });
     } catch (error) {
         res.status(500).json({ message: 'Error creating recipe', error });
@@ -44,7 +44,7 @@ recipeRouter.put('/:id', async (req, res) => {
     try {
         const updatedRecipe = await Recipe.findOneAndUpdate(
             { id: req.params.id },
-            { recipe_name, ingredients, instructions },
+            { recipe_name, ingredients, instructions, image},
             { new: true }
         );
 
