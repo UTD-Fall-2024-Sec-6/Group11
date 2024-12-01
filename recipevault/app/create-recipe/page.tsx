@@ -22,7 +22,7 @@ export default function Page() {
     setIngredients(newIngredients)
   }
 
-  const handleSubmit = (e) => {
+  async function handleSubmit(e: any) {
     e.preventDefault()
     // Filter out empty ingredients
     const filteredIngredients = ingredients.filter(ingredient => ingredient.trim() !== '')
@@ -33,6 +33,18 @@ export default function Page() {
       ingredients: filteredIngredients
     })
     // Add your submission logic here
+    const res = await fetch("/api/recipe", {
+      method: "POST",
+      headers: {
+          "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        id: "",
+        recipe_name: recipeName,
+        ingredients: filteredIngredients,
+        instructions: recipeDescription
+      })
+    })
   }
 
   return (
