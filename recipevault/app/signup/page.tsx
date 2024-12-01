@@ -23,6 +23,7 @@ const SignupPage = () => {
         password: password
       })
   })
+}
 
   return (
     <div className="min-h-screen bg-white flex items-center justify-center relative overflow-hidden">
