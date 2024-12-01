@@ -8,8 +8,18 @@ const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  async function handleSignIn () {
-
+  async function handleLogin (e: any) {
+    e.preventDefault();
+    const res = await fetch("/api/signin", {
+      method: "POST",
+      headers: {
+          "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+          username: username,
+          password: password, 
+      })
+    })
   }
 
   return (
@@ -17,7 +27,7 @@ const LoginPage = () => {
       <div className="max-w-2xl w-full px-6 py-8 bg-gray-50 rounded-lg">
         <h1 className="text-3xl font-bold text-center text-[#031749]">Welcome Back</h1>
         <h2 className="text-sm font-bold text-center mb-8">Discover and Share Amazing Recipes</h2>
-        <form onSubmit={handleSignIn} className="space-y-6">
+        <form onSubmit={handleLogin} className="space-y-6">
           <div>
             <label htmlFor="username" className="block text-sm font-medium text-gray-700">Username</label>
             <input
