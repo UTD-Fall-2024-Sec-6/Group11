@@ -6,8 +6,8 @@ export async function POST (req: NextRequest, res: NextResponse ) {
     await dbConnect();
     try {
         // Aryaman's Portion
-        const {id, recipe_name, ingredients, instructions} = await req.json();
-        const recipe = await Recipe.create({id, recipe_name, ingredients, instructions});
+        const {recipe_name, ingredients, instructions, image} = await req.json();
+        const recipe = await Recipe.create({recipe_name, ingredients, instructions, image});
         return NextResponse.json({
             success: true,
             message: `Recipe (${recipe.recipe_name}) has been successfully created.)`
@@ -36,7 +36,7 @@ export async function GET (req: NextRequest, res: NextResponse) {
         }
 
         // Fetch recipe by ID
-        const recipe = await Recipe.findOne({ id: Number(id) });
+        const recipe = await Recipe.findById(id);
         return NextResponse.json({
             recipe: recipe
         }, {status: 200})
@@ -113,10 +113,10 @@ export async function DELETE (req: NextRequest, res: NextResponse ) {
             );
         }
 
-        const recipe = await Recipe.findOneAndDelete({id: Number(id)})
+        const recipe = await Recipe.findByIdAndDelete(id)
         return NextResponse.json({
             success: true,
-            message: `Recipe (${recipe.id}) has been deleted.`
+            message: `Recipe (${recipe._id}) has been deleted.`
         }, {status: 200})
         
     } catch (error) {
