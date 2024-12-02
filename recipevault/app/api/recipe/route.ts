@@ -27,6 +27,7 @@ export async function GET (req: NextRequest, res: NextResponse) {
         // Extract id from query parameters
         const { searchParams } = new URL(req.url);
         const id = searchParams.get("id");
+        const search = searchParams.get("search");
 
         if (!id) {
             return NextResponse.json(
@@ -35,7 +36,13 @@ export async function GET (req: NextRequest, res: NextResponse) {
             );
         }
 
+        const query: any = {};
+        if (search) {
+            query.recipe_name = { $regex: search, $options: "i" };
+        }
+
         // Fetch recipe by ID
+        
         const recipe = await Recipe.findById(id);
         return NextResponse.json({
             recipe: recipe
