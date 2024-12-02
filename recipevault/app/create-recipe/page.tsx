@@ -6,6 +6,7 @@ export default function Page() {
   const [ingredients, setIngredients] = useState([''])
   const [recipeName, setRecipeName] = useState('')
   const [recipeDescription, setRecipeDescription] = useState('')
+  const [recipeImage, setRecipeImage] = useState("");
 
   const handleAddIngredient = () => {
     setIngredients([...ingredients, ''])
@@ -39,7 +40,7 @@ export default function Page() {
           "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        id: "",
+        image: recipeImage,
         recipe_name: recipeName,
         ingredients: filteredIngredients,
         instructions: recipeDescription
@@ -57,6 +58,19 @@ export default function Page() {
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="space-y-2">
+              <label htmlFor="recipe-name" className="font-medium">
+                Recipe Image URL
+              </label>
+              <input
+                id="image"
+                placeholder="Enter Image URL"
+                value={recipeImage}
+                onChange={(e) => setRecipeImage(e.target.value)}
+                className="w-full bg-gray-100 p-2 rounded-md"
+              />
+            </div>
+
             <div className="space-y-2">
               <label htmlFor="recipe-name" className="font-medium">
                 Recipe Name
@@ -84,9 +98,20 @@ export default function Page() {
             </div>
 
             <div className="space-y-2">
-              <label className="font-medium">
-                Ingredients List
-              </label>
+              <div className="flex justify-between items-end">
+                <label className="font-medium">
+                  Ingredients List
+                </label>
+
+                <button
+                  type="button"
+                  onClick={handleAddIngredient}
+                  className="w-fit bg-black text-white text-sm p-2 rounded-md mt-2"
+                >
+                  Add Ingredient
+                </button>
+
+              </div>
               {ingredients.map((ingredient, index) => (
                 <div key={index} className="flex items-center space-x-2 mb-2">
                   <input
@@ -100,41 +125,21 @@ export default function Page() {
                     <button 
                       type="button"
                       onClick={() => handleRemoveIngredient(index)}
-                      className="bg-red-500 text-white px-2 py-1 rounded-md"
+                      className="bg-white  border-2 text-gray-500  px-2 py-1 rounded-md"
                     >
                       Remove
                     </button>
                   )}
                 </div>
               ))}
-              <button
-                type="button"
-                onClick={handleAddIngredient}
-                className="w-full bg-green-500 text-white p-2 rounded-md mt-2"
-              >
-                Add Ingredient
-              </button>
-            </div>
-
-            <div className="space-y-2">
-              <label className="font-medium">Photos</label>
-              <div className="border-2 border-dashed rounded-lg p-12 text-center">
-                <p className="text-gray-500">Add Images Here</p>
-              </div>
             </div>
 
             <div className="space-y-4">
               <button 
                 type="submit"
-                className="w-full bg-navy-blue text-white hover:bg-navy-blue/90 p-2 rounded-md"
+                className="w-full bg-navy-blue text-white bg-black rounded-full font-bold  px-2 py-4 mt-8"
               >
-                Save
-              </button>
-              <button
-                type="button"
-                className="w-full border-gray-200 text-gray-700 p-2 rounded-md"
-              >
-                Edit
+                Create Recipe
               </button>
             </div>
           </form>

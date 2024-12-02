@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
 
 const RecipeSchema = new mongoose.Schema({
-    id: {
-        type: Number,
-        required: true,
-    },        
+    image: {
+        type: String,
+        required: false,
+    },
     recipe_name: {
         type: String,
         required: true,
