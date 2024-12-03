@@ -20,6 +20,23 @@ async function fetchRecipe(id: string) {
   }
 }
 
+async function deleteRecipe(id: string) {
+  try {
+    const res = await fetch(`http://localhost:3000/api/recipe?id=${id}`, {
+      method: "DELETE",
+    });
+
+    if (!res.ok) {
+      throw new Error("Failed to delete recipe.");
+    }
+
+    return true;
+  } catch (e) {
+    console.error("Error deleting recipe: ", e);
+    return false;
+  }
+}
+
 export default function RecipePage({ 
   params 
 }: { 
@@ -36,6 +53,23 @@ export default function RecipePage({
     };
     fetchData();
   }, [params]);
+
+  const handleDelete = async () => {
+    if (window.confirm("Are you sure you want to delete this recipe?")) {
+      const resolvedParams = await params;
+      const success = await deleteRecipe(resolvedParams.id);
+
+      if (success) {
+        alert("Recipe deleted successfully!");
+        // Redirect to another page, such as the recipe list
+        window.location.href = "/recipes";
+      } else {
+        alert("Failed to delete the recipe. Please try again.");
+      }
+    }
+  };
+
+
 
   // Handle case where recipe is not found
   if (!recipe) {
@@ -99,6 +133,17 @@ export default function RecipePage({
               </div>
             )}
           </div>
+
+          {/* Delete Button */}
+          <div className="mt-4">
+            <button
+              onClick={handleDelete}
+              className="bg-white text-red-900 px-4 py-2 rounded-md border border-solid border-red-900 hover:bg-red-800 hover:text-white"
+            >
+              Delete Recipe
+            </button>
+          </div>
+
         </div>
       </Suspense>
     </div>
