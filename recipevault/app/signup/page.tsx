@@ -13,6 +13,25 @@ const SignupPage = () => {
 
   async function handleCreateAccount (e: React.FormEvent) {
     e.preventDefault()
+    // Email validation
+    const emailRegex = /^(?!.*\.\.)(?!^[^a-zA-Z0-9])[^\s@]*[a-zA-Z0-9]@[^\s@]+\.[^\s@]{2,}$/;
+    if (
+      !emailRegex.test(email) ||
+      email.endsWith('.c') ||
+      email.length > 254 ||
+      /[!#$%&'*+/=?^_`{|}~.-]@/.test(email[email.indexOf('@') - 1])
+    ) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+
+    // Password validation
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,64}$/;
+    if (!passwordRegex.test(password)) {
+      alert("Password must include at least one uppercase letter, one lowercase letter, and one number. It must be between 8 and 64 characters long.");
+      return;
+    }
+
     await createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // signed up
