@@ -8,12 +8,12 @@ export default function RecipeCard({ recipe }: any) {
 
   return (
     <div 
-      className="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer hover:shadow-lg transition-shadow"
+      className="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer hover:shadow-lg transition-shadow h-full"
       onClick={() => router.push(`/recipe/${recipe._id}`)}
     >
     {!recipe.image ? 
       <img
-        src="/" // You might want to use recipe.image if available
+        src="/" // Placeholder image if recipe image is not available
         alt={recipe.recipe_name}
         width={300}
         height={200}
@@ -21,7 +21,7 @@ export default function RecipeCard({ recipe }: any) {
       />
       :
       <img
-        src={recipe.image} // You might want to use recipe.image if available
+        src={recipe.image}
         alt={recipe.recipe_name}
         width={300}
         height={200}
@@ -30,9 +30,8 @@ export default function RecipeCard({ recipe }: any) {
     }
       <div className="p-4">
         <h3 className="text-lg font-semibold mb-2">{recipe.recipe_name}</h3>
-        <p className="text-sm text-gray-600">{recipe.instructions}</p>
+        <p className="text-sm text-gray-600 max-h-16 overflow-hidden text-ellipsis">{recipe.instructions}</p>
       </div>
     </div>
   );
 }
-

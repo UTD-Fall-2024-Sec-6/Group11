@@ -3,7 +3,7 @@ import RecipeCard from "../components/RecipeCard";
 
 async function fetchRecipes() {
   try {
-    const query = search ? `?search=${encodeURIComponent(search)}` : "";
+    // const query = search ? `?search=${encodeURIComponent(search)}` : "";
     const res = await fetch("http://localhost:3000/api/recipes", {method: "GET"})
     if (!res?.ok) {
       throw new Error("Failed to fetch recipes.")
@@ -17,14 +17,14 @@ async function fetchRecipes() {
 
 export default async function Page() {
   const { recipes } = await fetchRecipes();
-  const [search, setSearch] = useState(""); // Search query state
+  // const [search, setSearch] = useState(""); // Search query state
 
 
-  const handleSearch = async (e: React.FormEvent) => {
-    e.preventDefault(); // Prevent default form submission
-    const data = await fetchRecipes(search); // Fetch filtered recipes
-    setRecipes(data.recipes); // Update recipes state
-  };
+  // const handleSearch = async (e: React.FormEvent) => {
+  //   e.preventDefault(); // Prevent default form submission
+  //   const data = await fetchRecipes(search); // Fetch filtered recipes
+  //   setRecipes(data.recipes); // Update recipes state
+  // };
 
   return (
     <div className="min-h-screen bg-white">
