@@ -10,7 +10,7 @@ export async function POST (req: NextRequest, res: NextResponse ) {
         const recipe = await Recipe.create({recipe_name, ingredients, instructions, image});
         return NextResponse.json({
             success: true,
-            message: `Recipe (${recipe.recipe_name}) has been successfully created.)`
+            message: `Recipe (${recipe.recipe_name}) has been successfully created.`
         }, { status: 200 })
         
     } catch (error) {
@@ -29,11 +29,16 @@ export async function GET (req: NextRequest, res: NextResponse) {
         const id = searchParams.get("id");
         const search = searchParams.get("search");
 
-        if (!id) {
-            return NextResponse.json(
-                { success: false, error: "Recipe ID is required" },
-                { status: 400 }
-            );
+        if (id) {
+            // Fetch recipe by ID
+            const recipe = await Recipe.findById(id);
+            if (!recipe) {
+                return NextResponse.json(
+                    { success: false, error: "Recipe not found" },
+                    { status: 404 }
+                );
+            }
+            return NextResponse.json({ recipe: recipe }, { status: 200 });
         }
 
         const query: any = {};
@@ -41,12 +46,9 @@ export async function GET (req: NextRequest, res: NextResponse) {
             query.recipe_name = { $regex: search, $options: "i" };
         }
 
-        // Fetch recipe by ID
-        
-        const recipe = await Recipe.findById(id);
-        return NextResponse.json({
-            recipe: recipe
-        }, {status: 200})
+        // Fetch all recipes or search by name
+        const recipes = await Recipe.find(query);
+        return NextResponse.json({ recipes: recipes }, { status: 200 });
         
     } catch (error) {
         return NextResponse.json({
@@ -60,7 +62,7 @@ export async function PUT (req: NextRequest, res: NextResponse ) {
     try {
         // Sanjana's Portion
         const body = await req.json();
-        const { id, recipe_name, ingredients, instructions } = body;
+        const { id, recipe_name, ingredients, instructions, image } = body;
 
         if (!id) {
             return NextResponse.json(
@@ -73,6 +75,7 @@ export async function PUT (req: NextRequest, res: NextResponse ) {
         if (recipe_name !== undefined) updateFields.recipe_name = recipe_name;
         if (ingredients !== undefined) updateFields.ingredients = ingredients;
         if (instructions !== undefined) updateFields.instructions = instructions;
+        if (image !== undefined) updateFields.image = image;
 
         if (Object.keys(updateFields).length === 0) {
             return NextResponse.json(
@@ -81,8 +84,8 @@ export async function PUT (req: NextRequest, res: NextResponse ) {
             );
         }
 
-        const result = await Recipe.findOneAndUpdate(
-            { id: id }, // Match the recipe by ID
+        const result = await Recipe.findByIdAndUpdate(
+            id, // Match the recipe by ID
             { $set: updateFields }, // Apply updates
             { new: true } // Return the updated document
         );
@@ -98,32 +101,6 @@ export async function PUT (req: NextRequest, res: NextResponse ) {
             { message: "Recipe updated successfully", recipe: result },
             { status: 200 }
         );
-        
-        const body = await req.json();
-        const { id, updateData } = body;
-
-        if (!id || !updateData) {
-            return NextResponse.json(
-                { error: "Recipe ID and update data are required." },
-                { status: 400 }
-            );
-        }
-
-        const result = await Recipe.findOneAndUpdate(
-            { id: id }, // Match the recipe by ID
-            { $set: updateData }, // Apply updates
-            { returnDocument: 'after' } // Return the updated document
-        );
-
-        if (!result.value) {
-            return NextResponse.json(
-                { error: "Recipe not found or no changes made." },
-                { status: 404 }
-            );
-        }
-
-        return NextResponse.json({ message: "Recipe updated successfully", recipe: result.value }, { status: 200 });
-
 
     } catch (error) {
         return NextResponse.json({
@@ -146,11 +123,18 @@ export async function DELETE (req: NextRequest, res: NextResponse ) {
             );
         }
 
-        const recipe = await Recipe.findByIdAndDelete(id)
+        const recipe = await Recipe.findByIdAndDelete(id);
+        if (!recipe) {
+            return NextResponse.json(
+                { success: false, error: "Recipe not found." },
+                { status: 404 }
+            );
+        }
+
         return NextResponse.json({
             success: true,
             message: `Recipe (${recipe._id}) has been deleted.`
-        }, {status: 200})
+        }, { status: 200 });
         
     } catch (error) {
         return NextResponse.json({
