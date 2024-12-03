@@ -83,7 +83,18 @@ export default function Page() {
         ingredients: filteredIngredients,
         instructions: recipeDescription
       })
-    })
+    });
+
+    if (res.ok) {
+      alert('Recipe created successfully!');
+      // Reset form after successful submission
+      setRecipeName('');
+      setRecipeDescription('');
+      setIngredients(['']);
+      setRecipeImage('');
+    } else {
+      alert('Failed to create recipe. Please try again.');
+    }
   }
 
   // async function handleSubmit(e: any) {
