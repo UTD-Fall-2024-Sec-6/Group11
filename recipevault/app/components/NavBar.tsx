@@ -37,8 +37,8 @@ const NavBar = () => {
             Home
           </Link>
           <span className="mx-2">|</span>
-          <Link href="/my-recipes" className="hover:text-gray-900">
-            My Recipes
+          <Link href="/create-recipe" className="hover:text-gray-900">
+            New Recipe
           </Link>
         </div>
         <div className="space-x-4 text-sm flex items-center">
