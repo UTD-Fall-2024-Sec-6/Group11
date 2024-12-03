@@ -9,6 +9,10 @@ export default function Page() {
   const [recipeImage, setRecipeImage] = useState("");
 
   const handleAddIngredient = () => {
+    if (ingredients.length >= 40) {
+      alert("You cannot add more than 40 ingredients.");
+      return;
+    }
     setIngredients([...ingredients, ''])
   }
 
@@ -23,15 +27,49 @@ export default function Page() {
     setIngredients(newIngredients)
   }
 
-  async function handleSubmit(e: any) {
+  async function handleSubmit(e) {
     e.preventDefault()
+    
+    // Validation for recipe name
+    const alphanumericRegex = /^[a-zA-Z0-9 ]*$/;
+    if (!recipeName.trim()) {
+      alert("Recipe name is required.");
+      console.log("Recipe name is required.");
+      return;
+    }
+    if (recipeName.length > 100) {
+      alert("Recipe name cannot exceed 100 characters.");
+      return;
+    }
+    if (!alphanumericRegex.test(recipeName)) {
+      alert("Recipe name must only contain alphanumeric characters.");
+      return;
+    }
+
     // Filter out empty ingredients
     const filteredIngredients = ingredients.filter(ingredient => ingredient.trim() !== '')
+    
+    // Validation for ingredients
+    if (filteredIngredients.length === 0) {
+      alert("At least one ingredient is required.");
+      return;
+    }
+    if (filteredIngredients.length > 40) {
+      alert("You cannot have more than 40 ingredients.");
+      return;
+    }
+    for (const ingredient of filteredIngredients) {
+      if (ingredient.length > 50) {
+        alert("Each ingredient cannot exceed 50 characters.");
+        return;
+      }
+    }
     
     console.log({
       recipeName,
       recipeDescription,
-      ingredients: filteredIngredients
+      ingredients: filteredIngredients,
+      image: recipeImage
     })
     // Add your submission logic here
     const res = await fetch("/api/recipe", {
@@ -47,6 +85,31 @@ export default function Page() {
       })
     })
   }
+
+  // async function handleSubmit(e: any) {
+  //   e.preventDefault()
+  //   // Filter out empty ingredients
+  //   const filteredIngredients = ingredients.filter(ingredient => ingredient.trim() !== '')
+    
+  //   console.log({
+  //     recipeName,
+  //     recipeDescription,
+  //     ingredients: filteredIngredients
+  //   })
+  //   // Add your submission logic here
+  //   const res = await fetch("/api/recipe", {
+  //     method: "POST",
+  //     headers: {
+  //         "Content-Type": "application/json"
+  //     },
+  //     body: JSON.stringify({
+  //       image: recipeImage,
+  //       recipe_name: recipeName,
+  //       ingredients: filteredIngredients,
+  //       instructions: recipeDescription
+  //     })
+  //   })
+  // }
 
   return (
     <div className="min-h-screen flex flex-col">
